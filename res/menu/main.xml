@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    
+     <item
+        android:id="@+id/aboutdt"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/acerca_de"
+        android:title="Acerca de"/>
+        
+        <item
+        android:id="@+id/actualizarDBmenu"
+        android:orderInCategory="101"
+        android:showAsAction="always"
+        android:icon="@drawable/actualizar_sin_texto"
+        android:title="Actualizar DataBase"/>
+    
+    <item
+        android:id="@+id/buscar"
+        android:orderInCategory="102"
+        android:showAsAction="always"
+        android:icon="@drawable/busqueda_rapida"
+        android:title="@string/action_settings"/>
+    
+    
+
+</menu>
