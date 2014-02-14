@@ -186,14 +186,6 @@ public class GeneralidadesSivigila extends Activity {
 	{
 		try{
 			TemasListaString=baseDatos.consultar_Tema(gener);
-//			for (String index: TemasListaString) {
-//				if(TemasListaString.get(0).equals("null"))//||TemasListaString==null)
-//				{
-//					Log.e("NULA","La lista TEMA es null");
-//					SpintemaSpi.setVisibility(View.INVISIBLE);
-//				}
-//				else{SpintemaSpi.setVisibility(View.VISIBLE);}
-//			}
 			
 		}
 		catch(Exception e)
