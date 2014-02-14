@@ -85,19 +85,6 @@ public class GeneralidadesSivigila extends Activity {
 		inte=recibeInten.getStringExtra("TIPO-ITEM");
 		setTitle(inte);
 		llenar_spinner_Tema(inte);
-//		Log.e("TIPO RESULTADO",inte);
-		
-//		SpindominioInfo.setOnItemSelectedListener(new OnItemSelectedListener() {
-//
-//			@Override
-//			public void onItemSelected(AdapterView<?> arg0, View arg1,
-//					int index, long arg3) {
-////				Log.e("SpinnerDominio",DominioListaString.get(index));
-//				llenar_spinner_Tema(DominioListaString.get(index));				
-//			}
-//			@Override
-//			public void onNothingSelected(AdapterView<?> arg0) {}
-//		});
 		
 		SpintemaSpi.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -116,12 +103,6 @@ public class GeneralidadesSivigila extends Activity {
 					enlaceView.setVisibility(View.VISIBLE);
 					TxtDescripcion.setVisibility(View.INVISIBLE);
 					tituloDescripcion.setVisibility(View.INVISIBLE);
-				
-					 DisplayMetrics displaymetrics = new DisplayMetrics();
-					 getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-					 int height = displaymetrics.heightPixels;
-					if (height <= 320)
-					{
 						enlaceView.setVisibility(View.INVISIBLE);
 						AlertDialog.Builder alert = new AlertDialog.Builder(GeneralidadesSivigila.this);
 						alert.setTitle("REPRESENTACIÓN GRÁFICA");
@@ -145,15 +126,7 @@ public class GeneralidadesSivigila extends Activity {
 						        dialog.dismiss();
 						    }
 						});
-						alert.show();
-					}
-					else
-					{
-						lanzar_webview("https://scontent-a-mia.xx.fbcdn.net/hphotos-frc3/t1/1901270_1390107397919468_921929203_n.jpg");
-					}
-
-
-					
+						alert.show();	
 				}
 				else
 				{
@@ -197,23 +170,7 @@ public class GeneralidadesSivigila extends Activity {
 		return true;
 	}
 	
-//	public void llenar_spinner_dominio()
-//	{
-//		try{
-//			DominioListaString=baseDatos.consultar_DomInfo();
-//		}
-//		catch(Exception e)
-//		{
-//			Log.e(e.toString(),"NO pudo conectarse a la BD Genralidades table1");
-//		}				
-//		HashSet hs = new HashSet();
-//		hs.addAll(DominioListaString);
-//		DominioListaString.clear();
-//		DominioListaString.addAll(hs);
-//		Collections.sort(DominioListaString);
-//		ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,DominioListaString);
-//		SpindominioInfo.setAdapter(adapter);
-//	}
+
 	
 	
 	
@@ -298,31 +255,5 @@ public class GeneralidadesSivigila extends Activity {
 		TxtDescripcion.setText(mensaje);
 	}
 	
-//	public void llenar_descripcion(String tema)
-//	{
-//		try{
-//			DescripcionListaString=baseDatos.getDescripcion();
-//			SubtemaListaString=baseDatos.getSubtema();
-//			if(SubtemaListaString.get(0).equals("null"))//||SubtemaListaString==null)
-//			{
-//				Log.e("NULA","La lista SUBTEMA es null");
-//				SpinSubtem.setVisibility(View.INVISIBLE);
-//			}	
-//			else{SpinSubtem.setVisibility(View.VISIBLE);}
-//		}
-//		catch(Exception e)
-//		{
-//			Log.e(e.toString(),"NO pudo conectarse a la BD generalides Table4");
-//		}		
-//		
-//		ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,SubtemaListaString);
-//		SpinSubtem.setAdapter(adapter);
-//		
-//		if(SpinSubtem.getVisibility()==View.INVISIBLE)
-//		{
-//		TxtDescripcion.setText(DescripcionListaString.get(0));
-//		}
-//		else{}		
-//	}
 
 }
