@@ -9,6 +9,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -26,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vigilatusalud_v3.BasedeDatos;
 import com.vigilatusalud_v3.R;
@@ -97,14 +100,21 @@ public class GeneralidadesSivigila extends Activity {
 				Log.e("SpinnerTema",mensaje);
 //				llenar_descripcion(TemasListaString.get(index));
 				String mensaje2=TxtDescripcion.getText().toString();
-				if(mensaje2.startsWith("http") || mensaje2.startsWith("https"))
+				Log.e("index spinner flujo inf","valor: "+index);
+
+
+				
+				if(index == 1 && (mensaje2.startsWith("http") || mensaje2.startsWith("https")))
 				{
-					Log.e("SI","Contiene http");
-					enlaceView.setVisibility(View.VISIBLE);
+
 					TxtDescripcion.setVisibility(View.INVISIBLE);
 					tituloDescripcion.setVisibility(View.INVISIBLE);
-						enlaceView.setVisibility(View.INVISIBLE);
-						AlertDialog.Builder alert = new AlertDialog.Builder(GeneralidadesSivigila.this);
+				    enlaceView.setVisibility(View.INVISIBLE);
+					if (isInternetAvailable(GeneralidadesSivigila.this.getBaseContext()))
+					{
+					Log.e("SI","Contiene http");
+
+					    AlertDialog.Builder alert = new AlertDialog.Builder(GeneralidadesSivigila.this);
 						alert.setTitle("REPRESENTACIÓN GRÁFICA");
 						WebView wv = new WebView(GeneralidadesSivigila.this);
 						wv.loadUrl("https://scontent-a-mia.xx.fbcdn.net/hphotos-frc3/t1/1901270_1390107397919468_921929203_n.jpg");
@@ -126,7 +136,17 @@ public class GeneralidadesSivigila extends Activity {
 						        dialog.dismiss();
 						    }
 						});
-						alert.show();	
+
+						alert.show();
+					}
+					else
+					{
+						Toast.makeText(GeneralidadesSivigila.this.getBaseContext(),
+								"Se necesita activar el acceso a internet para usar esta funcionalidad.",
+								Toast.LENGTH_LONG).show();
+					}
+
+						
 				}
 				else
 				{
@@ -245,6 +265,32 @@ public class GeneralidadesSivigila extends Activity {
 		}
 		
 		TxtDescripcion.setText(mensaje);
+	}
+	
+	public static boolean isInternetAvailable(Context context) {
+	    boolean haveConnectedWifi = false;
+	    boolean haveConnectedMobile = false;
+	    boolean connectionavailable = false;
+	    ConnectivityManager cm = (ConnectivityManager) context
+	            .getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+	    NetworkInfo informationabtnet = cm.getActiveNetworkInfo();
+	    for (NetworkInfo ni : netInfo) {
+	        try {
+	            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+	                if (ni.isConnected()) haveConnectedWifi = true; //Log.e("Type-Conection",ni.getTypeName());
+	            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+	                if (ni.isConnected()) haveConnectedMobile = true;//Log.e("Type-Conection",ni.getTypeName());
+	            if (informationabtnet.isAvailable()
+	                && informationabtnet.isConnected())
+	                connectionavailable = true;//Log.e("Internet","Esta Conectado a Internet");
+	            Log.i("ConnectionAvailable", "" + connectionavailable);
+	        } catch (Exception ex) {
+//	           Log.e("Catch Internet","Inside utils catch clause , exception is" + ex.toString());
+	            ex.printStackTrace();
+	        }
+	    }
+	    return haveConnectedWifi || haveConnectedMobile;
 	}
 	
 
