@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
 			}
 			else
 			{
-				mostra_mensaje("Requiere de interner para realizar esta acción");
+				mostra_mensaje("Requiere de internet para realizar esta acción");
 			}
 			
 			return true;	
